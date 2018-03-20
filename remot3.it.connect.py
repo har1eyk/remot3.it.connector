@@ -7,14 +7,15 @@ import requests
 import httplib2
 from terminaltables import AsciiTable
 import subprocess
-#import threading, paramiko
 import pyperclip
+import config
 
+URL = config.URL
+DEVELOPERKEY = config.DEVELOPERKEY
+USERNAME = config.USERNAME
+PASSWORD = config.PASSWORD
 
-URL = "https://api.remot3.it/apv/v23.5/user/login"
-DEVELOPERKEY = "NDlBMzE5MEItMDVGMC00MzgzLUI0NzktRjQxREIwNEFDQkRF"
-
-PAYLOAD = "{ \"username\" : \"harleyk@gmail.com\", \"password\" : \"przBBRK43f1y\" }"
+PAYLOAD = "{ \"username\" : \"%s\", \"password\" : \"%s\" }" % (USERNAME, PASSWORD)
 HEADERS = {
     'developerkey': DEVELOPERKEY,
     'content-type': "application/json",
@@ -78,7 +79,7 @@ if __name__ == '__main__':
         i += 1
     table = AsciiTable(deviceListArray)
     print(table.table)
-inputString = input("Which sensor to connect?")
+inputString = input("Which sensor to connect? ")
 
 # replace this with the actual UID of your device that you got from /device/list/all
 chosenDeviceId = myListOfDevicesJson["devices"][int(
